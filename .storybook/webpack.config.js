@@ -1,4 +1,7 @@
-module.exports = {
+const path = require('path')
+const merge = require('webpack-merge')
+
+const customizedConfig = {
   plugins: [],
   module: {
     rules: [
@@ -16,6 +19,14 @@ module.exports = {
     ],
   },
   resolve: {
+    alias: {
+      src: '../src',
+      stories: '../stories',
+    },
     extensions: ['.tsx', '.ts', '.js'],
   },
+}
+
+module.exports = async ({config}) => {
+  return merge(config, customizedConfig)
 }
